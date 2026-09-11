@@ -1,0 +1,19 @@
+{
+  "name": "Rakott kelkáposzta bulgurral",
+  "short_name": "Rakott kel",
+  "description": "Mobil receptlap – rakott kelkáposzta bulgurral",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
