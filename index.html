@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Rakott kelkáposzta bulgurral</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="eyebrow">Mobil receptlap</div>
+    <h1>Rakott kelkáposzta<br>bulgurral</h1>
+    <p class="subtitle">Magyaros, szaftos rakott kel – rizs helyett közepes szemű bulgurral, 30 × 22 cm-es sütőtálra hangolva.</p>
+    <div class="hero-actions">
+      <button class="pill primary" id="startCookTop">🍳 Főzés mód</button>
+      <button class="pill" id="themeBtn" aria-label="Téma váltása">◐ Téma</button>
+      <button class="pill" id="installBtn" hidden>⬇ Telepítés</button>
+    </div>
+    <div class="meta">
+      <div class="box"><strong>~85 perc</strong><span>teljes idő</span></div>
+      <div class="box"><strong>180 °C</strong><span>alsó-felső</span></div>
+      <div class="box"><strong>közepes</strong><span>nehézség</span></div>
+    </div>
+  </header>
+
+  <section class="control-card">
+    <div class="control-row">
+      <div><strong>Adagszám</strong><div class="small">Minden mennyiség együtt skálázódik.</div></div>
+      <div class="stepper">
+        <button id="minusServ" aria-label="Adagszám csökkentése">−</button>
+        <output id="servOut">6</output>
+        <button id="plusServ" aria-label="Adagszám növelése">+</button>
+      </div>
+    </div>
+  </section>
+
+  <details class="card">
+    <summary>1. Előismeretek</summary>
+    <div class="card-body">
+      <p>A rakott kel klasszikus magyar házi egytálétel. Ebben a változatban a rizs helyét <strong>közepes szemű bulgur</strong> veszi át. A cél nem egy „diétás utánzat”, hanem ugyanaz a szaftos, paprikás-tejfölös karakter, kissé diósabb gabonaízzel.</p>
+      <div class="note"><strong>A bulgur kulcsa:</strong> csak részben puhítjuk elő. A sütőben még folyadékot vesz fel, így nem lesz pépes, és másnap újramelegítve is jobb marad a töltelék szerkezete.</div>
+      <p>A jó rakott kel két állagegyensúlyon múlik: a kelkáposzta legyen <strong>jól lecsepegtetve</strong>, a húsos-bulguros töltelék viszont maradjon <strong>kissé szaftos</strong>.</p>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>2. Információk</summary>
+    <div class="card-body">
+      <div class="grid2">
+        <div class="kv"><small>Előkészítés</small><strong>kb. 35 perc</strong></div>
+        <div class="kv"><small>Sütés</small><strong id="bakeTimeInfo">35–40 perc</strong></div>
+        <div class="kv"><small>Pihentetés</small><strong>10–15 perc</strong></div>
+        <div class="kv"><small>Alap sütőtál</small><strong>30 × 22 cm</strong></div>
+      </div>
+      <div class="note warn"><strong>Élelmiszerbiztonság:</strong> a darált húst teljesen süsd át; a kész rakott étel közepe legyen forró, a szélein finoman bugyogó. Ha maghőmérőt használsz, a közepe érje el legalább a 75 °C-ot.</div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>3. Eszközök és sütőtál</summary>
+    <div class="card-body">
+      <p>Alapbeállítás: <strong>30 × 22 cm</strong> belső alapterületű sütőtál.</p>
+      <div class="control-row">
+        <label>Hossz<br><input id="dishL" type="number" min="18" max="50" step="1" value="30"> cm</label>
+        <label>Szélesség<br><input id="dishW" type="number" min="15" max="40" step="1" value="22"> cm</label>
+      </div>
+      <div class="note" id="dishAdvice"></div>
+      <p class="small">A becslés a 30 × 22 cm-es tálban kb. 5 cm-es kész rétegvastagságból indul ki. A sütők és a tényleges alapanyag-nedvesség eltérhet, ezért a vizuális jelek mindig fontosabbak a percnél.</p>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>4. Hozzávalók</summary>
+    <div class="card-body" id="ingredients"></div>
+  </details>
+
+  <details class="card">
+    <summary>5. Előkészítés</summary>
+    <div class="card-body">
+      <ol class="steps">
+        <li><strong>Kel:</strong> a káposztát szedd leveleire vagy vágd negyedekre. A vastag torzsát távolítsd el, a nagy levélereket vékonyítsd el.</li>
+        <li><strong>Bulgur:</strong> öblítsd át. A szükséges <span class="qty" data-ing="bulgur"></span> bulgurhoz mérj <span class="qty" data-ing="bulgurWater"></span> vizet.</li>
+        <li><strong>Hagyma és fokhagyma:</strong> a <span class="qty" data-ing="onion"></span> vöröshagymát vágd finomra, a <span class="qty" data-ing="garlic"></span> fokhagymát zúzd vagy aprítsd.</li>
+        <li><strong>Tejföl:</strong> készítsd elő a <span class="qty" data-ing="sourcream"></span> tejfölt és a <span class="qty" data-ing="egg"></span> tojást.</li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>6. Elkészítés</summary>
+    <div class="card-body">
+      <ol class="steps">
+        <li><strong>Kel előfőzése.</strong> Enyhén sós, gyöngyözve forró vízben főzd 5–8 percig. Akkor jó, amikor a vastagabb levélrész már hajlítható, de a levél még tartja magát. Szűrd le, és legalább 10 percig hagyd alaposan lecsepegni.</li>
+        <li><strong>Bulgur részleges puhítása.</strong> A <span class="qty" data-ing="bulgur"></span> bulgurt öntsd fel <span class="qty" data-ing="bulgurWater"></span> vízzel, adj hozzá kevés sót. Forrald fel, majd kis lángon, lefedve 5–6 percig főzd. Kapcsold le, pihentesd 5 percig. Maradjon enyhén harapható.</li>
+        <li><strong>Hagymás alap.</strong> A <span class="qty" data-ing="fat"></span> zsiradékon közepes-kis lángon 6–8 perc alatt párold üvegesre a hagymát. Add hozzá a fokhagymát, keverd 30–40 másodpercig.</li>
+        <li><strong>Paprika és hús.</strong> Húzd le röviden a tűzről, keverd bele a <span class="qty" data-ing="paprika"></span> fűszerpaprikát, majd azonnal add hozzá a <span class="qty" data-ing="meat"></span> darált sertéshúst. Közepesen erős lángon, morzsásra bontva süsd 6–8 percig.</li>
+        <li><strong>Fűszerezés és szaft.</strong> Add hozzá a sót, borsot, majoránnát és a köményt. Önts alá <span class="qty" data-ing="ragoutWater"></span> vizet. Közepes-kis lángon főzd még 8–10 percig. <em>Ne szárítsd ki:</em> maradjon kevés sűrű paprikás szaft.</li>
+        <li><strong>Töltelék.</strong> Keverd a részben puhított bulgurt a húshoz. Kóstold meg most: itt állítsd be végleg a sót és a borsot.</li>
+        <li><strong>Tejfölös keverék.</strong> Keverd össze a tejfölt a tojással, kevés sóval és annyi vízzel, hogy könnyen kenhető legyen.</li>
+        <li><strong>Rétegezés.</strong> Vékonyan kend ki a tálat. Alulra kerüljön a kel fele, rá a tejföl kb. harmada, majd az összes húsos-bulguros töltelék. Fedd be a maradék kellel, a tetején simítsd el a többi tejfölt.</li>
+        <li><strong>Sütés.</strong> Előmelegített, 180 °C-os alsó-felső sütőben süsd <span id="bakeTimeStep">35–40 percig</span>, alapvetően fedetlenül. Akkor jó, amikor a széle finoman bugyog, a tejföl összeállt és foltokban enyhén pirul.</li>
+        <li><strong>Pihentetés.</strong> Kivétel után 10–15 percig hagyd állni. Ettől stabilizálódik a töltelék, és szebben adagolható.</li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>7. Állag, íz és gyakori hibák</summary>
+    <div class="card-body">
+      <p><strong>Vizes az alja:</strong> a kel túl nedves volt. Legközelebb hosszabban csepegtesd, szükség esetén finoman nyomkodd ki.</p>
+      <p><strong>Száraz a töltelék:</strong> a húsragu túl szárazra sült, vagy a bulgurt teljesen készre főzted. Rétegezéskor a töltelék legyen enyhén szaftos.</p>
+      <p><strong>Kemény a bulgur:</strong> kevés folyadékot kapott. Rétegezés előtt adj a töltelékhez kevés forró vizet vagy enyhe alaplevet.</p>
+      <p><strong>Szétcsúszik:</strong> még túl forró. A 10–15 perces pihentetés ennél az ételnél valódi technológiai lépés.</p>
+      <div class="note"><strong>Ízegyensúly:</strong> a kel enyhe kesernyésségét és a tejföl zsírosságát a paprikás hús, a fokhagyma és tálaláskor egy savanyúság szépen kiegyensúlyozza.</div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>8. Tálalás, tárolás, újramelegítés</summary>
+    <div class="card-body">
+      <p><strong>Tálalás:</strong> önmagában teljes főétel. Jól illik mellé savanyú uborka, almapaprika vagy paradicsomsaláta. Extra tejföl opcionális.</p>
+      <p><strong>Tárolás:</strong> lehűtve, lefedve hűtőben 2–3 napig tartható.</p>
+      <p><strong>Újramelegítés:</strong> 160–170 °C-os sütőben, lefedve kb. 15–20 perc; az utolsó 5 percre levehető a fedés. Mikróban is jól melegíthető, de lefedve kevésbé szárad ki.</p>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>9. Tápérték és egészség</summary>
+    <div class="card-body">
+      <p>A számítás soványabb, kb. 10% zsírtartalmú darált sertéshússal és 12%-os tejföllel készült. Márkától és a kész étel tényleges tömegétől függően eltérhet.</p>
+      <table>
+        <thead><tr><th></th><th>100 g</th><th id="servNutHead">1 adag</th></tr></thead>
+        <tbody>
+          <tr><td>Energia</td><td>~100 kcal</td><td id="nKcal">~500 kcal</td></tr>
+          <tr><td>Fehérje</td><td>~6,7 g</td><td id="nProt">~33 g</td></tr>
+          <tr><td>Szénhidrát</td><td>~8,9 g</td><td id="nCarb">~45 g</td></tr>
+          <tr><td>Zsír</td><td>~4,6 g</td><td id="nFat">~23 g</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><strong>Miért működik a bulgur?</strong> Teljesebb gabonaszem-szerkezetet és több rostot ad, miközben a rakott étel szaftját jól felveszi. A tányér fő tömegét továbbra is a kelkáposzta adja, a hús pedig a fehérje fő forrása.</div>
+    </div>
+  </details>
+
+  <details class="card" id="shoppingCard">
+    <summary>10. Bevásárlólista</summary>
+    <div class="card-body">
+      <p class="small">Pipáld ki, ami már megvan. A lista és az adagszám helyben megmarad.</p>
+      <div id="shopping"></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>11. Saját jegyzet</summary>
+    <div class="card-body">
+      <textarea id="notes" placeholder="Például: legközelebb több fokhagyma; 38 perc volt jó; a saját sütőtálam 32 × 24 cm…"></textarea>
+      <p class="small">A jegyzetet az „Új főzés” sem törli.</p>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>12. Háttér</summary>
+    <div class="card-body">
+      <p>A rakott kel a magyar otthoni konyha jól ismert rakott ételeinek egyike. A klasszikus receptek közös váza a kelkáposzta, a darált hús, a gabonás töltelék és a tejföl; a rétegezés, a tojás, a sajt és a fűszerezés családonként erősen változik.</p>
+      <p>Ez a recept tudatosan megtartja a magyaros paprikás-tejfölös karaktert, és csak a gabonát cseréli bulgurra, illetve az előfőzést ehhez igazítja.</p>
+    </div>
+  </details>
+
+  <details class="card source">
+    <summary>13. Források</summary>
+    <div class="card-body">
+      <p><strong>Hagyományos szerkezet és technológiai összevetés:</strong><br>
+      <a href="https://www.mindmegette.hu/recept/hagyomanyos-rakott-kel-1" target="_blank" rel="noopener">Mindmegette – Hagyományos rakott kel</a><br>
+      <a href="https://www.mindmegette.hu/recept/rizses-husos-rakott-kel" target="_blank" rel="noopener">Mindmegette – Rizses-húsos rakott kel</a></p>
+      <p><strong>Tápérték-becslés alapjához:</strong><br>
+      <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener">USDA FoodData Central</a></p>
+      <p class="small">A recept saját, otthoni konyhára optimalizált változat; nem egyetlen forrás receptjének átvétele. A tápértékek becslések.</p>
+    </div>
+  </details>
+</div>
+
+<div class="footerbar">
+  <div class="inner">
+    <button class="primary" id="startCookBottom">🍳 Főzés</button>
+    <button id="goShopping">🛒 Lista</button>
+    <button id="newCook">↻ Új főzés</button>
+  </div>
+</div>
+
+<div id="cookOverlay" aria-hidden="true">
+  <div class="cook-wrap">
+    <div class="cook-top">
+      <button id="closeCook">← Recept</button>
+      <button id="wakeBtn">☀ Képernyő ébren</button>
+    </div>
+    <div class="cook-progress"><i id="cookBar"></i></div>
+    <div class="cook-step">
+      <div class="num" id="cookNum"></div>
+      <h2 id="cookTitle"></h2>
+      <p id="cookText"></p>
+    </div>
+    <div class="cook-actions">
+      <button id="prevStep">← Előző</button>
+      <button class="next" id="nextStep">Következő →</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
